@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/REC-html401/loose.dtd">
+<!-- saved from url=(0064)http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="generator" content="SmartDoc 1.2b">
+<meta name="author" content="
+  Mutsunori BANBARA and
+  Naoyuki TAMURA
+">
+<meta name="date" content="June 2008">
+<title>Prolog Cafe Tutorial: Interoperating with Java</title>
+<link rel="stylesheet" type="text/css" href="./Prolog Cafe Tutorial  Interoperating with Java_files/plcafe.css">
+<script type="text/javascript">
+<!--
+/*
+ * HTML4JavaScript.js
+ *
+ * @since   Nov. 17, 1998
+ * @version Feb. 18, 2002
+ * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
+ */
+var backupColor=null;
+var backupBGColor=null;
+var backupFontStyle=null;
+var backupIDColor=null;
+var backupIDBGColor=null;
+var backupIDFontStyle=null;
+var backupIDBorderStyle=null;
+
+var backupOnKeyDown=null;
+
+function normal(element) {
+  if (document.all) {
+    if (backupColor != null) {
+      element.style.color=backupColor;
+      backupColor=null;
+    }
+    if (backupBGColor != null) {
+      element.style.background=backupBGColor;
+      backupBGColor=null;
+    }
+    if (backupFontStyle != null) {
+      element.style.fontStyle=backupFontStyle;
+      backupFontStyle=null;
+    }
+    var id = null;
+    if (element.href != null) {
+      id = element.href;
+      id = id.substring(id.indexOf("#") + 1);
+    }
+    if (id != null) {
+      var target = document.all.item(id, 0);
+      if (backupIDColor != null) {
+        target.style.color=backupIDColor;
+        backupIDColor=null;
+      }
+      if (backupIDBGColor != null) {
+        target.style.background=backupIDBGColor;
+        backupIDBGColor=null;
+      }
+      if (backupIDFontStyle != null) {
+        target.style.fontStyle=backupIDFontStyle;
+        backupIDFontStyle=null;
+      }
+      if (backupIDBorderStyle != null) {
+        target.style.borderStyle=backupIDBorderStyle;
+        backupIDBorderStyle=null;
+      }
+    }
+  }
+}
+
+function hilight(element) {
+  if (document.all) {
+    backupBGColor=element.style.background;
+    element.style.background="gold";
+  }
+}
+
+function hilightString(element, color) {
+  if (color == null) {
+    color="darkolivegreen";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function hilightSelflink(element, color) {
+  if (color == null) {
+    color="darkolivegreen";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+    var id = null;
+    if (element.href != null) {
+      id = element.href;
+      id = id.substring(id.indexOf("#") + 1);
+    }
+    if (id != null) {
+      var target = document.all.item(id, 0);
+      backupIDColor=target.style.color;
+//      backupIDBGColor=target.style.background;
+//      backupIDFontStyle=target.style.fontStyle;
+      backupIDBorderStyle=target.style.borderStyle;
+      target.style.color="red";
+      target.style.borderStyle="outset";
+    }
+  }
+}
+
+function hilightHyperlink(element, color) {
+  if (color == null) {
+    color="darkorange";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function hilightExternallink(element, color) {
+  if (color == null) {
+    color="purple";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function toggleChildren(node) {
+  if (document.all) {
+    for (i = 0;i < node.children.length;i++) {
+      var child = node.children[i];
+      if (child.className == "dynamic") {
+        if (child.style.display == "") {
+            child.style.display = "none";
+        } else {
+            child.style.display = "";
+        }
+      }
+    }
+  }
+}
+
+function toggleDynamic(node) {
+  if (document.all) {
+    if (node.tagName == "LI") {
+      toggleChildren(node);
+    }
+  }
+}
+
+function isMsie4orGreater() { 
+  var ua = window.navigator.userAgent; var msie = ua.indexOf ("MSIE");
+  if (msie > 0) {
+    return (parseInt (ua.substring (msie+5, ua.indexOf (".", msie))) >= 4)   
+      && (ua.indexOf ("MSIE 4.0b") <0);
+  } else {
+    return false;
+  }
+}
+
+function keyEventHandler() {
+  if (document.all) {
+    if (event.keyCode == 13) {
+      var child = document.all.item("doc_next_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else if (event.keyCode == 39) {
+      var child = document.all.item("doc_next_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else if (event.keyCode = 37) {
+      var child = document.all.item("doc_prev_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else {
+      backupOnKeyDown();
+    }
+  }
+}
+
+function setOHPHandler() {
+  backupOnKeyDown=document.onkeydown;
+  document.onkeydown=keyEventHandler;
+}
+// -->
+</script>
+</head>
+<body>
+<div style="text-align:right"><a href="http://www.xmlsmartdoc.org/" target="_top"><span style="color:#4F5952;background:#EE8362;font-family:sans-serif;font-size:xx-small;text-decoration:none">Powered by </span><span style="color:#058258;background:#EE8362;font-family:fantasy, sans-serif;font-size:x-small;text-decoration:none">SmartDoc</span></a></div>
+
+<h1 class="title">Prolog Cafe Tutorial: Interoperating with Java</h1>
+
+<div class="date">June 2008</div>
+<div class="author">
+  <a href="http://kaminari.istc.kobe-u.ac.jp/banbara.html" target="_top" onmouseover="hilightExternallink(this)" onmouseout="normal(this)">Mutsunori BANBARA</a> and
+  <a href="http://bach.istc.kobe-u.ac.jp/tamura.html" target="_top" onmouseover="hilightExternallink(this)" onmouseout="normal(this)">Naoyuki TAMURA</a>
+</div>
+<div class="org">Kobe University, JAPAN</div>
+<h2>Table of Contents</h2>
+
+<div class="toc">
+<ul>
+<li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_id30" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Calling Java from Prolog</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_id391" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Calling Prolog from Java</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_id593" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Making a User-Defined Built-in Predicate</a>
+</li></ul>
+</div>
+
+<h2 id="doc1_id30">Calling Java from Prolog</h2>
+
+<p class="first">Prolog Cafe provides the following built-in predicates that enable us to easily call Java programs from Prolog programs.</p>
+
+<dl>
+<dt><tt>java_constructor(+Class(Arg<sub>1</sub>,...,Arg<sub>n</sub>), ?Term)</tt>
+</dt><dd>Creates a new instance by calling the public constructor represented by <tt>Class(Arg<sub>1</sub>,...,Arg<sub>n</sub>)</tt>, and unifies the instance with <tt>Term</tt>. <tt>Class</tt> is a Java class name with full package path. <tt>Arg</tt> is an argument to be passed to the constructor call. Each of arguments is automatically converted to a corresponding Java object (See <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  1[Data conversion between Prolog and Java]</a>). Place just an atom as <tt>Class</tt> instead if the constructor has no argument (<tt>n = 0</tt>).
+</dd><dt><tt>java_method(+Class_or_Instance, 
+                      +Method(Arg<sub>1</sub>,...,Arg<sub>n</sub>), 
+                      ?Term)</tt>
+</dt><dd>Invokes the public <em>member</em> method <span class="note"><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_id92" onmouseover="hilightSelflink(this)" onmouseout="normal(this)" title="The public member methods of the class or interface includes those declared by the class or interface and those inherited from superclasses and superinterfaces."><sup>(1)</sup></a></span> represented by <tt>Method(Arg<sub>1</sub>,...,Arg<sub>n</sub>)</tt> of the class, interface, or instance represented by <tt>Class_or_Instance</tt>, and unifies a return object with <tt>Term</tt>. <tt>Method</tt> is a Java method name. <tt>Arg</tt> is an argument to be passed to the method call. Each of arguments is automatically converted to a corresponding Java object (See <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  1[Data conversion between Prolog and Java]</a>). Place just an atom as <tt>Method</tt> instead if the method has no argument (<tt>n = 0</tt>). <tt>Method</tt> is a instance method if <tt>Class_or_Instance</tt> is a Java object. <tt>Method</tt> is a static method if <tt>Class_or_Instance</tt> is an atom representing a Java class name with full package path. The return object is automatically converted to a corresponding term by the inverse conversion of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  1[Data conversion between Prolog and Java]</a>. If the return type of <tt>Method</tt> is void, or the return object is <tt>null</tt>, <tt>Term</tt> remains unaltered.
+</dd><dt><tt>java_get_field(+Class_or_Instance,
+                         +Field,
+                         ?Term)</tt>
+</dt><dd>Gets the value of the public <em>member</em> field <span class="note"><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_note:public_member_fields" onmouseover="hilightSelflink(this)" onmouseout="normal(this)" title="The public member fields of the class or interface includes those declared by the class or interface and those inherited from superclasses and superinterfaces."><sup>(2)</sup></a></span> represented by <tt>Field</tt> of the class, interface, or instance represented by <tt>Class_or_Instance</tt>, and unifies it with <tt>Term</tt>. <tt>Field</tt> is an atom that represents a Java field name. <tt>Field</tt> is a instance field if <tt>Class_or_Instance</tt> is a Java object. <tt>Field</tt> is a static field if <tt>Class_or_Instance</tt> is an atom representing a Java class name with full package path. The field object is automatically converted to a corresponding term by the inverse conversion of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  1[Data conversion between Prolog and Java]</a>.
+</dd><dt><tt>java_set_field(+Class_or_Instance,
+                         +Field,
+                         +Value)</tt>
+</dt><dd>Sets the value to the public <em>member</em> field <span class="note"><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_id200" onmouseover="hilightSelflink(this)" onmouseout="normal(this)" title=""><sup>(3)</sup></a></span> represented by <tt>Field</tt> of the class, interface, or instance represented by <tt>Class_or_Instance</tt>. <tt>Field</tt> is an atom that represents a Java field name. <tt>Value</tt>, a value to be set to the field, is automatically converted to a corresponding Java object (See <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  1[Data conversion between Prolog and Java]</a>). <tt>Field</tt> is a instance field if <tt>Class_or_Instance</tt> is a Java object. <tt>Field</tt> is a static field if <tt>Class_or_Instance</tt> is an atom representing a Java class name with full package path.</dd></dl>
+
+
+<div class="table">
+<table id="doc1_table:data_conversion" class="data" rules="groups">
+<caption>Data conversion between Prolog and Java</caption>
+<colgroup span="2">
+<col>
+<col>
+</colgroup>
+<thead>
+<tr class="even">
+<th style="width:20%" align="center">Prolog</th>
+<th style="width:20%" align="center">Java</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>integer</td>
+<td>java.lang.Integer</td>
+</tr>
+<tr class="odd">
+<td>float</td>
+<td>java.lang.Double</td>
+</tr>
+<tr class="even">
+<td>atom</td>
+<td>java.lang.String</td>
+</tr>
+<tr class="odd">
+<td>list</td>
+<td>java.util.Vector</td>
+</tr>
+<tr class="even">
+<td>java_object</td>
+<td>Java Object</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>These predicates are available from both the interpreter and the translator. For example, the following goal creates a new java frame instance, set its size to 200 × 200, and make it visible.</p>
+
+<pre id="doc1_id301" class="console">| ?- java_constructor('java.awt.Frame', X),
+     java_method(X, setSize(200,200), _),
+     java_get_field('java.lang.Boolean', 'TRUE', True),
+     java_method(X, setVisible(True), _).
+
+X = java.awt.Frame(1402733),
+True = java.lang.Boolean(1231) ? 
+yes
+</pre>
+
+
+<div class="figure">
+<img class="figure" src="./Prolog Cafe Tutorial  Interoperating with Java_files/empty_frame.png">
+</div>
+
+<p><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:queens2.pl" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  1[queens2.pl]</a>is a Prolog program of N-Queens puzzle. The goal of N-Queens is to place N queens on an N by N board such that no piece attacks another. Let us show how to display the result of N-Queens graphically through cooperation with Java.</p>
+
+<ul>
+<li> Save the programs <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:queens2.pl" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  1[queens2.pl]</a> and <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:QueensFrame.java" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  2[QueensFrame.java]</a> as <tt>queens2.pl</tt> and <tt>QueensFrame.java</tt> respectively.
+<pre id="doc1_id322" class="console">&gt; <kbd class="kbd">ls</kbd>
+QueensFrame.java        queens2.pl
+</pre>
+</li><li> Compile <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:QueensFrame.java" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">QueensFrame.java</a>.
+<pre id="doc1_id331" class="console">&gt; <kbd class="kbd">javac QueensFrame.java</kbd>
+</pre>
+</li><li> Run the interpreter by adding the current directory to the class path since <tt>QueensFrame.class</tt> must be loaded.
+<pre id="doc1_id340" class="console">&gt; <kbd class="kbd">java -cp .:$PLCAFEDIR/plcafe.jar:$CLASSPATH \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.lang.PrologMain \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.builtin:cafeteria</kbd>
+
+| ?- 
+</pre>
+</li><li> Consult <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:queens2.pl" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">queens2.pl</a> and execute a goal <tt>show</tt>.
+<pre id="doc1_id352" class="console">| ?- <kbd class="kbd">[queens2].</kbd>
+{consulting queens2.pl ...}
+{queens2.pl consulted, 230 msec}
+| ?- <kbd class="kbd">show.</kbd>
+</pre></li></ul>
+
+<p>The goal <tt>show/0</tt> first creates a <tt>QueensFrame</tt> object and makes it visible. And then the answer of the call <tt>queens(8,Xs)</tt> is displayed on the frame (see <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_figure:queens_result" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Figure  1[Result of queens2.pl]</a>) by invoking the <tt>setQueens(Qs)</tt> method. The answer, a list of integers, will be automatically converted into a <tt>java.util.Vector</tt> object at that time. Finally, <tt>fail</tt> force to do backtrack for finding an another answer after waiting a minute by invoking the <tt>sleep</tt> method of <tt>java.lang.Thread</tt>.</p>
+
+<div id="doc1_program:queens2.pl" class="caption">queens2.pl</div>
+<pre class="program" style="margin-top:0">main :-
+	queens(8, Qs), write(Qs), nl, fail.
+
+show :-
+	java_constructor('QueensFrame', Frame),
+	queens(8, Qs),
+	java_method(Frame, setQueens(Qs), _),
+	java_method('java.lang.Thread', sleep(1000), _),
+	fail.
+
+queens(N,Qs) :-
+	range(1,N,Ns),
+	queens(Ns,[],Qs).
+
+queens([],Qs,Qs).
+queens(UnplacedQs,SafeQs,Qs) :-
+	select(UnplacedQs,UnplacedQs1,Q),
+	not_attack(SafeQs,Q),
+	queens(UnplacedQs1,[Q|SafeQs],Qs).
+
+not_attack(Xs,X) :-
+	not_attack(Xs,X,1).
+
+not_attack([],_,_) :- !.
+not_attack([Y|Ys],X,N) :-
+	X =\= Y+N, X =\= Y-N,
+	N1 is N+1,
+	not_attack(Ys,X,N1).
+
+select([X|Xs],Xs,X).
+select([Y|Ys],[Y|Zs],X) :- select(Ys,Zs,X).
+
+range(N,N,[N]) :- !.
+range(M,N,[M|Ns]) :-
+	M &lt; N,
+	M1 is M+1,
+	range(M1,N,Ns).
+</pre>
+
+
+<div id="doc1_program:QueensFrame.java" class="caption">QueensFrame.java</div>
+<pre class="program" style="margin-top:0"><span class="keyword">import</span> java.awt.*;
+<span class="keyword">import</span> java.util.Vector;
+
+<span class="keyword">public</span> <span class="keyword">class</span> QueensFrame <span class="keyword">extends</span> Frame {
+    QueensPanel queensPanel;
+
+    <span class="keyword">public</span> QueensFrame() {
+	setSize(500, 500);
+	queensPanel = <span class="keyword">new</span> QueensPanel();
+	add(queensPanel);
+	setVisible(<span class="primitive">true</span>);
+    }
+
+    <span class="keyword">public</span> <span class="primitive">void</span> setQueens(Vector queens) {
+	queensPanel.setQueens(queens);
+    }
+}
+
+<span class="keyword">class</span> QueensPanel <span class="keyword">extends</span> Panel {
+    Vector qs = <span class="primitive">null</span>;
+
+    <span class="keyword">public</span> <span class="primitive">void</span> setQueens(Vector queens) {
+	qs = queens;
+	repaint();
+    }
+
+    <span class="keyword">public</span> <span class="primitive">void</span> paint(Graphics g) {
+	<span class="keyword">if</span> (qs == <span class="primitive">null</span>)
+	  <span class="keyword">return</span>;
+	<span class="primitive">int</span> c = getSize().height / qs.size();
+	Color[] bg = { Color.white, Color.gray };
+	<span class="keyword">for</span> (<span class="primitive">int</span> i = 0; i &lt; qs.size(); i++) {
+	    <span class="keyword">for</span> (<span class="primitive">int</span> j = 0; j &lt; qs.size(); j++) {
+		g.setColor(bg[(i + j) % 2]);
+		g.fillRect(i * c, j * c, c, c);
+	    }
+	    g.setColor(Color.orange);
+	    <span class="primitive">int</span> j = ((Integer)qs.get(i)).intValue()-1;
+	    <span class="primitive">int</span> d = c / 10;
+	    g.fillOval(i*c+d, j*c+d, c-2*d, c-2*d);
+	}
+    }
+}
+</pre>
+
+
+<div class="figure">
+<img id="doc1_figure:queens_result" class="figure" style="width:30%" src="./Prolog Cafe Tutorial  Interoperating with Java_files/queens_result.png" alt="Result of queens2.pl" width="30%">
+</div>
+
+
+<div class="footnote">
+<ol>
+<li id="doc1_id92" value="1"> The public member methods of the class or interface includes those declared by the class or interface and those inherited from superclasses and superinterfaces.</li><li id="doc1_note:public_member_fields" value="2"> The public member fields of the class or interface includes those declared by the class or interface and those inherited from superclasses and superinterfaces.</li><li id="doc1_id200" value="3"> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_note:public_member_fields" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">(2)</a></li></ol>
+</div>
+
+
+<h2 id="doc1_id391">Calling Prolog from Java</h2>
+
+<p class="first">At first, we give a brief introduction to the Prolog Cafe implementation of Prolog data, called <em>term</em>. Please refer to <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/javadoc/index.html" onmouseover="hilightHyperlink(this)" onmouseout="normal(this)">Prolog Cafe API Specification</a> in detail.</p>
+<p>Each term is translated into a java object of classes in <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_figure:term_class" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Figure  2[Term representation]</a>: <tt>VariableTerm</tt>, <tt>IntegerTerm</tt>, <tt>DoubleTerm</tt>, <tt>SymbolTerm</tt>, <tt>ListTerm</tt>, and <tt>StructureTerm</tt>. The <tt>Term</tt> class, which has an abstract method <tt>unify</tt>, is a common superclass of these classes. The <tt>JavaObjectTerm</tt> class is used to represent any java instance as a term.</p>
+
+<div class="figure">
+<img id="doc1_figure:term_class" class="figure" style="width:60%" src="./Prolog Cafe Tutorial  Interoperating with Java_files/term_class.png" alt="Term representation" width="60%">
+</div>
+
+<p>Basic procedure for calling a Prolog predicate <em>p</em> from Java is as follows:</p>
+
+<ol>
+<li> Create a <tt>PrologControl</tt> object <b><em>e</em></b> as Prolog engine.
+</li><li> Create a predicate object <b><em>p</em></b> to be executed. <span class="note"><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_id451" onmouseover="hilightSelflink(this)" onmouseout="normal(this)" title="A predicate f/n is translated into a java file PRED_f_n.java. For example, the predicate queens/2 in the queens2.pl is translated into a file PRED_queens_2.java."><sup>(4)</sup></a></span>
+</li><li> Create an array of terms <b><em>a</em></b> as the arguments to be passed to the predicate call.
+</li><li> Set the predicate <b><em>p</em></b> and its arguments <b><em>a</em></b> to the engine <b><em>e</em></b> by invoking the <tt>setPredicate</tt> method.
+</li><li> Start finding the first answer by invoking the method <tt>call</tt> of <b><em>e</em></b>. Return <tt>true</tt> if the goal succeeds, otherwise <tt>false</tt>.
+</li><li> Restart finding the another answer by invoking the method <tt>redo</tt> of <em>e</em>. Return <tt>true</tt> if the goal succeeds, otherwise <tt>false</tt>.</li></ol>
+
+<p>This procedure using <tt>call</tt> and <tt>redo</tt> is based on the well-known <em>Prolog Box Control Flow Model</em>.</p>
+<p>For example, <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:Queens.java" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  3[Queens.java]</a> shows code for executing a goal <tt>queens(8,Qs)</tt> from Java. Each of the answers will be repeatedly displayed after being converted to a java string.</p>
+
+<ul>
+<li> Save the program of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:queens2.pl" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  1[queens2.pl]</a> and <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:Queens.java" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  3[Queens.java]</a> as <tt>queens2.pl</tt> and <tt>Queens.java</tt> respectively.
+<pre id="doc1_id563" class="console">&gt; <kbd class="kbd">ls</kbd>
+Queens.java	queens2.pl
+</pre>
+</li><li> Compile <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:queens2.pl" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">queens2.pl</a> and creates a Jar file of it.
+<pre id="doc1_id572" class="console">&gt; <kbd class="kbd">mkdir work</kbd>
+&gt; <kbd class="kbd">cd work/</kbd>
+work&gt; <kbd class="kbd">java -cp $PLCAFEDIR/plcafe.jar \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.compiler.Compiler ../queens2.pl</kbd>
+work&gt; <kbd class="kbd">javac -d . -cp $PLCAFEDIR/plcafe.jar *.java</kbd>
+work&gt; <kbd class="kbd">jar cf ../queens2.jar *.class</kbd>
+work&gt; <kbd class="kbd">cd ..</kbd>
+&gt; <kbd class="kbd">ls</kbd>
+Queens.java	queens2.jar	queens2.pl	work
+</pre>
+</li><li> Compile <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:Queens.java" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Queens.java</a> and executes it.
+<pre id="doc1_id581" class="console">&gt; <kbd class="kbd">javac -d . -cp queens2.jar:$PLCAFEDIR/plcafe.jar Queens.java</kbd>
+&gt; <kbd class="kbd">java -cp .:queens2.jar:$PLCAFEDIR/plcafe.jar Queens</kbd>
+[4,2,7,3,6,8,5,1]
+[5,2,4,7,3,8,6,1]
+[3,5,2,8,6,4,7,1]
+...
+&gt; 
+</pre></li></ul>
+
+<p>Other examples are available in the <tt>$PLCAFEDIR/examples/java</tt> directory.</p>
+
+<div id="doc1_program:Queens.java" class="caption">Queens.java</div>
+<pre class="program" style="margin-top:0"><span class="keyword">import</span> jp.ac.kobe_u.cs.prolog.lang.*;
+
+<span class="keyword">public</span> <span class="keyword">class</span> Queens {
+    <span class="keyword">static</span> <span class="primitive">void</span> queens(<span class="primitive">int</span> n) {
+	PrologControl prolog = <span class="keyword">new</span> PrologControl();
+	Predicate queens = <span class="keyword">new</span> PRED_queens_2();
+	Term arg1 = <span class="keyword">new</span> IntegerTerm(n);
+	Term arg2 = <span class="keyword">new</span> VariableTerm();
+	Term[] args = { arg1, arg2 };
+	prolog.setPredicate(queens, args);
+	<span class="keyword">for</span> (<span class="primitive">boolean</span> r = prolog.call(); r; r = prolog.redo()) {
+	    System.out.println(arg2.toString());
+	}
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="primitive">void</span> main(<span class="primitive">String</span>[] args) {
+	queens(8);
+    }
+}
+</pre>
+
+
+<div class="footnote">
+<ol>
+<li id="doc1_id451" value="4"> A predicate <em>f/n</em> is translated into a java file <tt>PRED_</tt><em>f</em><tt>_</tt><em>n</em><tt>.java</tt>. For example, the predicate <tt>queens/2</tt> in the <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:queens2.pl" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">queens2.pl</a> is translated into a file <tt>PRED_queens_2.java</tt>.</li></ol>
+</div>
+
+
+<h2 id="doc1_id593">Making a User-Defined Built-in Predicate</h2>
+
+<p class="first">As mentioned above, a predicate <em>f/n</em> is translated into a <tt>PRED_</tt><em>f</em><tt>_</tt><em>n</em><tt>.java</tt>. Conversely, it is possible to make an user-defined built-in predicate by creating a java program named <tt>PRED_</tt><em>f</em><tt>_</tt><em>n</em><tt>.java</tt>.</p>
+<p>Let us, for example, show how to make a built-in predicate <tt>msgbox/1</tt> that launches a new pop-up window for confirmation.</p>
+
+<ul>
+<li> Create a one line Prolog program (<tt>msgbox.pl</tt>), translate it into Java, and then a file <tt>PRED_msgbox_1.java</tt> is created.
+<div id="doc1_id633" class="caption">msgbox.pl</div>
+<pre class="program" style="margin-top:0">msgbox(_).
+</pre>
+
+
+<pre id="doc1_id636" class="console">&gt; <kbd class="kbd">java -cp $PLCAFEDIR/plcafe.jar \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.compiler.Compiler msgbox.pl</kbd>
+&gt; <kbd class="kbd">ls</kbd>
+PRED_msgbox_1.java      msgbox.pl
+</pre>
+</li><li> Edit the <tt>PRED_msgbox_1.java</tt> so as to add a declaration "<tt>import javax.swing.*;</tt>" to the top, and to add the following five lines to the <tt>exec</tt> method. <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_program:PRED_msgbox_1.java" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  5[PRED_msgbox_1.java]</a> shows a resulting code.
+<pre id="doc1_id653" class="program">a1 = a1.dereference();
+String msg = a1.toString();
+JFrame frame = new JFrame();
+frame.setSize(300, 100);
+JOptionPane.showMessageDialog(frame, msg);
+</pre>
+</li><li> Compile the modified <tt>PRED_msgbox_1.java</tt>.
+<pre id="doc1_id662" class="console">&gt; <kbd class="kbd">javac -d . -cp $PLCAFEDIR/plcafe.jar PRED_msgbox_1.java</kbd>
+</pre>
+</li><li> Execute a goal in the interpreter. For example, a goal <tt>msgbox('hello')</tt> launches a new pop-up window (see <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/tutorial1_en.html#doc1_figure:msgbox" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Figure  3[The output of msgbox(hello)]</a>).
+<pre id="doc1_id673" class="console">&gt; <kbd class="kbd">java -cp .:$PLCAFEDIR/plcafe.jar:$CLASSPATH \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.lang.PrologMain \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.builtin:cafeteria</kbd>
+
+| ?- msgbox('hello').
+yes
+</pre></li></ul>
+
+
+<div id="doc1_program:PRED_msgbox_1.java" class="caption">PRED_msgbox_1.java</div>
+<pre class="program" style="margin-top:0"><span class="keyword">import</span> jp.ac.kobe_u.cs.prolog.lang.*;
+<span class="keyword">import</span> jp.ac.kobe_u.cs.prolog.builtin.*;
+<span class="keyword">import</span> javax.swing.*; <span class="comment">// Added</span>
+
+<span class="keyword">public</span> <span class="keyword">class</span> PRED_msgbox_1 <span class="keyword">extends</span> Predicate {
+
+    <span class="keyword">public</span> Term arg1;
+
+    <span class="keyword">public</span> PRED_msgbox_1(Term a1, Predicate cont) {
+        arg1 = a1;
+        this.cont = cont;
+    }
+
+    <span class="keyword">public</span> PRED_msgbox_1(){}
+
+    <span class="keyword">public</span> <span class="primitive">void</span> setArgument(Term[] args, Predicate cont) {
+        arg1 = args[0];
+        this.cont = cont;
+    }
+
+    <span class="keyword">public</span> <span class="primitive">int</span> arity() { <span class="keyword">return</span> 1; }
+
+    <span class="keyword">public</span> <span class="primitive">String</span> toString() {
+        <span class="keyword">return</span> <span class="quote">"msgbox("</span> + arg1 + <span class="quote">")"</span>;
+    }
+
+    <span class="keyword">public</span> Predicate exec(Prolog engine) {
+        engine.setB0();
+        Term a1;
+        a1 = arg1;
+	a1 = a1.dereference();                     <span class="comment">// Added</span>
+	<span class="primitive">String</span> msg = a1.toString();                <span class="comment">// Added</span>
+	JFrame frame = <span class="keyword">new</span> JFrame();               <span class="comment">// Added</span>
+	frame.setSize(300, 100);                   <span class="comment">// Added</span>
+	JOptionPane.showMessageDialog(frame, msg); <span class="comment">// Added</span>
+        <span class="keyword">return</span> cont;
+    }
+}
+</pre>
+
+
+<div class="figure">
+<img id="doc1_figure:msgbox" class="figure" style="width:30%" src="./Prolog Cafe Tutorial  Interoperating with Java_files/msgbox.png" alt="The output of msgbox(hello)" width="30%">
+</div>
+
+<div class="footer">
+  <hr>
+  <a href="http://kaminari.istc.kobe-u.ac.jp/banbara.html" target="_top" onmouseover="hilightExternallink(this)" onmouseout="normal(this)">Mutsunori BANBARA</a></div>
+
+
+</body></html>

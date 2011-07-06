@@ -1,0 +1,1612 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/REC-html401/loose.dtd">
+<!-- saved from url=(0061)http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="generator" content="SmartDoc 1.2b">
+<meta name="author" content="
+  Mutsunori BANBARA and
+  Naoyuki TAMURA
+">
+<meta name="date" content="June 2008">
+<title>Prolog Cafe User's Manual version 1.1</title>
+<link rel="stylesheet" type="text/css" href="./Prolog Cafe User's Manual version 1.1_files/plcafe.css">
+<script type="text/javascript">
+<!--
+/*
+ * HTML4JavaScript.js
+ *
+ * @since   Nov. 17, 1998
+ * @version Feb. 18, 2002
+ * @author  ASAMI, Tomoharu (asami@XMLSmartDoc.org)
+ */
+var backupColor=null;
+var backupBGColor=null;
+var backupFontStyle=null;
+var backupIDColor=null;
+var backupIDBGColor=null;
+var backupIDFontStyle=null;
+var backupIDBorderStyle=null;
+
+var backupOnKeyDown=null;
+
+function normal(element) {
+  if (document.all) {
+    if (backupColor != null) {
+      element.style.color=backupColor;
+      backupColor=null;
+    }
+    if (backupBGColor != null) {
+      element.style.background=backupBGColor;
+      backupBGColor=null;
+    }
+    if (backupFontStyle != null) {
+      element.style.fontStyle=backupFontStyle;
+      backupFontStyle=null;
+    }
+    var id = null;
+    if (element.href != null) {
+      id = element.href;
+      id = id.substring(id.indexOf("#") + 1);
+    }
+    if (id != null) {
+      var target = document.all.item(id, 0);
+      if (backupIDColor != null) {
+        target.style.color=backupIDColor;
+        backupIDColor=null;
+      }
+      if (backupIDBGColor != null) {
+        target.style.background=backupIDBGColor;
+        backupIDBGColor=null;
+      }
+      if (backupIDFontStyle != null) {
+        target.style.fontStyle=backupIDFontStyle;
+        backupIDFontStyle=null;
+      }
+      if (backupIDBorderStyle != null) {
+        target.style.borderStyle=backupIDBorderStyle;
+        backupIDBorderStyle=null;
+      }
+    }
+  }
+}
+
+function hilight(element) {
+  if (document.all) {
+    backupBGColor=element.style.background;
+    element.style.background="gold";
+  }
+}
+
+function hilightString(element, color) {
+  if (color == null) {
+    color="darkolivegreen";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function hilightSelflink(element, color) {
+  if (color == null) {
+    color="darkolivegreen";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+    var id = null;
+    if (element.href != null) {
+      id = element.href;
+      id = id.substring(id.indexOf("#") + 1);
+    }
+    if (id != null) {
+      var target = document.all.item(id, 0);
+      backupIDColor=target.style.color;
+//      backupIDBGColor=target.style.background;
+//      backupIDFontStyle=target.style.fontStyle;
+      backupIDBorderStyle=target.style.borderStyle;
+      target.style.color="red";
+      target.style.borderStyle="outset";
+    }
+  }
+}
+
+function hilightHyperlink(element, color) {
+  if (color == null) {
+    color="darkorange";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function hilightExternallink(element, color) {
+  if (color == null) {
+    color="purple";
+  }
+  if (document.all) {
+    backupColor=element.style.color;
+    backupBGColor=element.style.background;
+    backupFontStyle=element.style.fontStyle;
+    element.style.color=color;
+  }
+}
+
+function toggleChildren(node) {
+  if (document.all) {
+    for (i = 0;i < node.children.length;i++) {
+      var child = node.children[i];
+      if (child.className == "dynamic") {
+        if (child.style.display == "") {
+            child.style.display = "none";
+        } else {
+            child.style.display = "";
+        }
+      }
+    }
+  }
+}
+
+function toggleDynamic(node) {
+  if (document.all) {
+    if (node.tagName == "LI") {
+      toggleChildren(node);
+    }
+  }
+}
+
+function isMsie4orGreater() { 
+  var ua = window.navigator.userAgent; var msie = ua.indexOf ("MSIE");
+  if (msie > 0) {
+    return (parseInt (ua.substring (msie+5, ua.indexOf (".", msie))) >= 4)   
+      && (ua.indexOf ("MSIE 4.0b") <0);
+  } else {
+    return false;
+  }
+}
+
+function keyEventHandler() {
+  if (document.all) {
+    if (event.keyCode == 13) {
+      var child = document.all.item("doc_next_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else if (event.keyCode == 39) {
+      var child = document.all.item("doc_next_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else if (event.keyCode = 37) {
+      var child = document.all.item("doc_prev_page_", 0);
+      if (child != null) {
+        location.href = child.href;
+      }
+    } else {
+      backupOnKeyDown();
+    }
+  }
+}
+
+function setOHPHandler() {
+  backupOnKeyDown=document.onkeydown;
+  document.onkeydown=keyEventHandler;
+}
+// -->
+</script>
+</head>
+<body>
+<div style="text-align:right"><a href="http://www.xmlsmartdoc.org/" target="_top"><span style="color:#4F5952;background:#EE8362;font-family:sans-serif;font-size:xx-small;text-decoration:none">Powered by </span><span style="color:#058258;background:#EE8362;font-family:fantasy, sans-serif;font-size:x-small;text-decoration:none">SmartDoc</span></a></div>
+
+<h1 class="title">Prolog Cafe User's Manual version 1.1</h1>
+
+<div class="date">June 2008</div>
+<div class="author">
+  <a href="http://kaminari.istc.kobe-u.ac.jp/banbara.html" target="_top" onmouseover="hilightExternallink(this)" onmouseout="normal(this)">Mutsunori BANBARA</a> and
+  <a href="http://bach.istc.kobe-u.ac.jp/tamura.html" target="_top" onmouseover="hilightExternallink(this)" onmouseout="normal(this)">Naoyuki TAMURA</a>
+</div>
+<div class="org">Kobe University, JAPAN</div>
+<h2>Table of Contents</h2>
+
+<div class="toc">
+<ul>
+<li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id54" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Install</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id60" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Install for Unix, Linux, and Mac OS X</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id124" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Install for Windows</a>
+</li></ul>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id131" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Getting Started</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id206" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">How to use the Prolog Cafe interpreter</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id214" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Preliminary</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id223" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Getting Started</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id248" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Reading in Programs (consult)</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id258" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Executing Goals</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id265" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Debugging</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id274" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Quit</a>
+</li></ul>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc2_section:translator" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">How to use the Prolog Cafe translator</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id301" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Preliminary</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id310" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Translating Prolog into Java</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id354" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Compiling Translated Code</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id371" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Executing a Goal in the Interpreter</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id378" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Executing a Goal in the Commnad Line</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id388" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Loading Predicates from Jar files</a>
+</li></ul>
+</li></ul>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id400" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Command Utilities</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id490" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Preliminary</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:plcafe" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">plcafe - Prolog Cafe application launcher</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id514" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Usage</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id547" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Description</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id556" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Options</a>
+</li></ul>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:pljava" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">pljava - Prolog to Java translator</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id679" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Usage</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id705" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Description</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id733" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Options</a>
+</li></ul>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:pljavac" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">pljavac - Compile Prolog Cafe applications into Java bytecode</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id819" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Usage</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id845" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Description</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id859" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Options</a>
+</li></ul>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:plcomp" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">plcomp - Prolog to Java bytecode compiler</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id930" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Usage</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id956" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Description</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id982" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Options</a>
+</li></ul>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:pljar" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">pljar - Create a Java archive (JAR) file of Prolog</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1091" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Usage</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1124" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Description</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1175" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Options</a>
+</li></ul>
+</li></ul>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1261" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Built-in Predicates</a> <span class="toggle" onmousedown="toggleDynamic(this.parentElement)" onmouseover="hilightString(this, &#39;red&#39;)" onmouseout="normal(this)">&gt;&gt;</span>
+<ul class="dynamic" style="display:none"><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1353" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Control constructs</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1416" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Term unification</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1438" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Type testing</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1518" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Term comparison</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1565" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Term creation and decomposition</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1596" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Arithmetic evaluation</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1607" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Arithmetic comparison</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1638" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Clause retrieval and information</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1657" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Clause creation and destruction</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1688" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">All solutions</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1707" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Stream selection and control</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1794" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Character input/output</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1897" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Byte input/output</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id1928" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Term input/output</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2027" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Logic and control</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2046" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Atomic term processing</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2117" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Implementation defined hooks</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2150" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">DCG</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2167" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Interoperating with Java</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2705" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Prolog interpreter</a>
+</li><li> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2757" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Misc</a>
+</li></ul>
+</li></ul>
+</div>
+
+<h1 class="chapter" id="doc1_id54">Install</h1>
+
+
+<h2 id="doc1_id60">Install for Unix, Linux, and Mac OS X</h2>
+
+
+<ol>
+<li> Check if Java<sup><font size="-2">TM</font></sup>1.5 or higher is installed.
+<pre id="doc1_id73" class="console">&gt; <kbd class="kbd">java -version</kbd>
+java version "1.5.0_13"
+...
+</pre>
+
+
+<pre id="doc1_id78" class="console">&gt; <kbd class="kbd">javac -version</kbd>
+javac 1.5.0_13
+...
+</pre>
+</li><li> Unzip (or Untar) the distribution file, and then a directory named <tt>PrologCafeX.Y.Z</tt> will be created, where <tt>X.Y.Z</tt> is a version number.
+<pre id="doc1_id92" class="console">&gt; <kbd class="kbd">unzip PrologCafeX.Y.Z.zip</kbd>
+</pre>
+</li><li> Set the environment variable <tt>PLCAFEDIR</tt>.
+<pre id="doc1_id103" class="console">&gt; <kbd class="kbd">export PLCAFEDIR=~/PrologCafeX.Y.Z</kbd>
+</pre>
+
+
+<pre id="doc1_id108" class="console">&gt; <kbd class="kbd">echo $PLCAFEDIR</kbd>
+/home/banbara/PrologCafeX.Y.Z
+</pre>
+</li><li> Check if installation succeeds or not by launching a small Prolog interpreter.
+<pre id="doc1_id116" class="console">&gt; <kbd class="kbd">java -cp $PLCAFEDIR/plcafe.jar \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.lang.PrologMain \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.lang.builtin:cafeteria</kbd>
+...
+| ?- halt.
+bye
+</pre></li></ol>
+
+
+<h2 id="doc1_id124">Install for Windows</h2>
+
+<p class="first">Under construction.</p>
+
+<h1 class="chapter" id="doc1_id131">Getting Started</h1>
+
+<p class="first">Prolog Cafe is a Prolog-to-Java source-to-source translator system.
+  Prolog Cafe consists of three parts:
+  
+</p><ul>
+<li> <b>Prolog-to-Java translator</b> <br> Is written in Prolog. Source code is almost 3000 lines long, and its location is <tt>$PLCAFEDIR/src/compiler</tt>. This part is provided by the <b><tt>jp.ac.kobe_u.cs.prolog.compiler</tt></b>, <tt>jp.ac.kobe_u.cs.prolog.compiler.pl2am</tt>, and <tt>jp.ac.kobe_u.cs.prolog.compiler.am2j</tt> packages.
+</li><li> <b>Runtime system</b> <br> Is written in Java. Source code is almost 5000 lines long, and its location is <tt>$PLCAFEDIR/src/lang</tt>. This part is provided by the <b><tt>jp.ac.kobe_u.cs.prolog.lang</tt></b> package.
+</li><li> <b>Built-in library</b> <br> Most of built-in predicates are written in Prolog, and some of them are written in Java. Source code is almost 3000 lines long, and its location is <tt>$PLCAFEDIR/src/builtin</tt>. This part is provided by the <b><tt>jp.ac.kobe_u.cs.prolog.builtin</tt></b> package.</li></ul><p></p>
+<p>In this section, we explain how to use the Prolog Cafe interpreter
+  and translator by using N-Queens program as an example.
+  The goal of N-Queens is to place N queens on an N by N board such
+  that no piece attacks another.</p>
+
+<div id="doc1_doc2_program:N-Queens" class="caption">queens.pl</div>
+<pre class="program" style="margin-top:0">main :-
+	queens(8, Qs), write(Qs), nl, fail.
+
+queens(N,Qs) :-
+	range(1,N,Ns),
+	queens(Ns,[],Qs).
+
+queens([],Qs,Qs).
+queens(UnplacedQs,SafeQs,Qs) :-
+	select(UnplacedQs,UnplacedQs1,Q),
+	not_attack(SafeQs,Q),
+	queens(UnplacedQs1,[Q|SafeQs],Qs).
+
+not_attack(Xs,X) :-
+	not_attack(Xs,X,1).
+
+not_attack([],_,_) :- !.
+not_attack([Y|Ys],X,N) :-
+	X =\= Y+N, X =\= Y-N,
+	N1 is N+1,
+	not_attack(Ys,X,N1).
+
+select([X|Xs],Xs,X).
+select([Y|Ys],[Y|Zs],X) :- select(Ys,Zs,X).
+
+range(N,N,[N]) :- !.
+range(M,N,[M|Ns]) :-
+	M &lt; N,
+	M1 is M+1,
+	range(M1,N,Ns).
+</pre>
+
+
+<h2 id="doc1_id206">How to use the Prolog Cafe interpreter</h2>
+
+<p class="first">Prolog Cafe provides a small Prolog interpreter.
+    The interpreter is useful for running and debugging Prolog
+    programs.
+    However, the execution speed is much slower than the translator
+    mentioned in <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc2_section:translator" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Section  2.2[How to use the Prolog Cafe translator]</a>.</p>
+
+<h3 id="doc1_id214">Preliminary</h3>
+
+<p class="first">Save the program in <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc2_program:N-Queens" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  2.1[queens.pl]</a> as <tt>queens.pl</tt>.</p>
+
+<h3 id="doc1_id223">Getting Started</h3>
+
+<p class="first">To run the Prolog Cafe interpreter, perform the following command. The interpreter shows the prompt '<tt>| ?-</tt>' as soon as it is ready to accept inputs.</p>
+
+<pre id="doc1_id228" class="console">&gt; <kbd class="kbd">java -cp $PLCAFEDIR/plcafe.jar \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.lang.PrologMain \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.builtin:cafeteria</kbd>
+...
+| ?-
+</pre>
+
+<p>The <tt>plcafe.jar</tt> is the jar archive of Prolog Cafe runtime system and translator. The <tt>jp.ac.kobe_u.cs.prolog.lang.PrologMain</tt> is the main program. The <tt>jp.ac.kobe_u.cs.prolog.builtin:cafeteria</tt> is an argument to be passed to the main program, where the <tt>jp.ac.kobe_u.cs.prolog.builtin</tt> and <tt>cafeteria</tt> are the package name and predicate name of the interpreter.</p>
+
+<h3 id="doc1_id248">Reading in Programs (consult)</h3>
+
+<p class="first">Put a file in brackets and type it.</p>
+
+<pre id="doc1_id250" class="console">| ?- <kbd class="kbd">[queens].</kbd>
+{consulting /.../queens.pl ...}
+{/.../queens.pl consulted, 170 msec}
+| ?-
+</pre>
+
+<p>This instructs the interpreter to read in (<em>consult</em>) the program.</p>
+
+<h3 id="doc1_id258">Executing Goals</h3>
+
+<p class="first">Type a goal.</p>
+
+<pre id="doc1_id260" class="console">| ?- <kbd class="kbd">main.</kbd>
+[4,2,7,3,6,8,5,1]
+[5,2,4,7,3,8,6,1]
+[3,5,2,8,6,4,7,1]
+...
+
+no
+| ?-
+</pre>
+
+
+<h3 id="doc1_id265">Debugging</h3>
+
+<p class="first">Prolog Cafe provides a small debugger. The usage is almost same as other Prolog systems, and we omit it here. The following is a sample session of debugging.</p>
+
+<pre id="doc1_id267" class="console">| ?- <kbd class="kbd">spy(queens/3).</kbd>
+{Small debugger is switch on}
+{spypoint user:queens/3 is added}
+
+yes
+{debug}
+| ?- <kbd class="kbd">queens(4,X).</kbd>
+  0 call : user:queens(4,_A2470C) ? l
++ 1 call : user:queens([1,2,3,4],[],_A2470C) ? l
++ 2 call : user:queens([2,3,4],[1],_A2470C) ? l
++ 3 call : user:queens([2,4],[3,1],_A2470C) ? l
++ 3 fail : user:queens([2,4],[3,1],_A2470C) ? l
++ 3 call : user:queens([2,3],[4,1],_A2470C) ? ?
+    Debuggin options:
+    a      abort
+    RET    creep
+    c      creep
+    l      leap
+    +      spy this
+    -      nospy this
+    ?      help
+    h      help
++ 3 call : user:queens([2,3],[4,1],_A2470C) ? -
+{spypoint user:queens/3 is removed}
+  3 call : user:queens([2,3],[4,1],_A2470C) ? l
+
+X = [3,1,4,2] ? ;
+
+X = [2,4,1,3] ? ;
+
+no
+{debug}
+| ?- <kbd class="kbd">nodebug.</kbd>
+{Small debugger is switch off}
+
+yes
+| ?-   
+</pre>
+
+
+<h3 id="doc1_id274">Quit</h3>
+
+<p class="first">Type <tt>halt.</tt> to exit from the interpreter.</p>
+
+<pre id="doc1_id279" class="console">| ?- <kbd class="kbd">halt.</kbd>
+bye
+</pre>
+
+
+<h2 id="doc1_doc2_section:translator">How to use the Prolog Cafe translator</h2>
+
+<p class="first">Basic procedure to use the translator is as follows:</p>
+
+<ol>
+<li> Translate Prolog programs into Java programs.
+</li><li> Compile translated code into Bytecode class files by using a Java compiler.
+</li><li> Execute a goal in the interpreter or command line.</li></ol>
+
+
+<h3 id="doc1_id301">Preliminary</h3>
+
+<p class="first">Save the program in <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc2_program:N-Queens" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  2.1[queens.pl]</a> as <tt>queens.pl</tt>.</p>
+
+<h3 id="doc1_id310">Translating Prolog into Java</h3>
+
+<p class="first">Create the <tt>work</tt> directory and move to there.</p>
+
+<pre id="doc1_id315" class="console">&gt; <kbd class="kbd">ls</kbd>
+queens.pl
+&gt; <kbd class="kbd">mkdir work</kbd>
+&gt; <kbd class="kbd">cd work/</kbd>
+</pre>
+
+<p>Let us translate a Prolog file <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc2_program:N-Queens" onmouseover="hilightSelflink(this)" onmouseout="normal(this)"><tt>queens.pl</tt></a> into Java.</p>
+
+<pre id="doc1_id322" class="console">work&gt; <kbd class="kbd">java -cp $PLCAFEDIR/plcafe.jar \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.compiler.Compiler ../queens.pl</kbd>
+...
+work&gt; <kbd class="kbd">ls</kbd>
+PRED_main_0.java	PRED_not_attack_3.java	PRED_queens_3.java	PRED_select_3.java
+PRED_not_attack_2.java	PRED_queens_2.java	PRED_range_3.java
+</pre>
+
+<p>The <tt>jp.ac.kobe_u.cs.prolog.compiler.Compiler</tt> is the class for translating Prolog into Java. The <tt>../queens.pl</tt> is an input program to be passed to that class. After the translation succeeds, for each predicate in <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc2_program:N-Queens" onmouseover="hilightSelflink(this)" onmouseout="normal(this)"><tt>queens.pl</tt></a>, a file named <tt>PRED_</tt><em>f</em><tt>_</tt><em>n</em><tt>.java</tt> is created in the current directory, where <em>f</em> is the predicate name, and <em>n</em> is the arity.</p>
+
+<h3 id="doc1_id354">Compiling Translated Code</h3>
+
+<p class="first">Compile translated code by using the <tt>javac</tt> command.</p>
+
+<pre id="doc1_id359" class="console">work&gt; <kbd class="kbd">javac -d . -cp $PLCAFEDIR/plcafe.jar *.java</kbd>
+</pre>
+
+<p>Now, all of the predicates of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc2_program:N-Queens" onmouseover="hilightSelflink(this)" onmouseout="normal(this)"><tt>queens.pl</tt></a> are compiled into Java bytecode in the current directory.</p>
+
+<pre id="doc1_id366" class="console">work&gt; <kbd class="kbd">ls *.class</kbd>
+PRED_main_0.class		PRED_not_attack_3_var_1.class	PRED_range_3.class
+PRED_not_attack_2.class		PRED_queens_2.class		PRED_range_3_1.class
+PRED_not_attack_3.class		PRED_queens_3.class		PRED_range_3_2.class
+PRED_not_attack_3_1.class	PRED_queens_3_1.class		PRED_range_3_sub_1.class
+PRED_not_attack_3_2.class	PRED_queens_3_2.class		PRED_range_3_top.class
+PRED_not_attack_3_top.class	PRED_queens_3_var.class		PRED_select_3.class
+PRED_not_attack_3_var.class	PRED_queens_3_var_1.class	................
+</pre>
+
+
+<h3 id="doc1_id371">Executing a Goal in the Interpreter</h3>
+
+<p class="first">Add the current directory to the class path and execute goals on the interpreter.</p>
+
+<pre id="doc1_id373" class="console">work&gt; <kbd class="kbd">java -cp .:$PLCAFEDIR/plcafe.jar \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.lang.PrologMain \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.builtin:cafeteria</kbd>
+...
+| ?- main.
+[4,2,7,3,6,8,5,1]
+[5,2,4,7,3,8,6,1]
+[3,5,2,8,6,4,7,1]
+...
+no
+| ?- findall(X,queens(4,X),L).
+L = [[3,1,4,2],[2,4,1,3]] ? 
+yes
+</pre>
+
+
+<h3 id="doc1_id378">Executing a Goal in the Commnad Line</h3>
+
+<p class="first">By passing a top-level goal as atom to the <tt>PrologMain</tt> class, it is possible to execute it from command line without the interpreter.</p>
+
+<pre id="doc1_id383" class="console">work&gt; <kbd class="kbd">java -cp .:$PLCAFEDIR/plcafe.jar \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.lang.PrologMain main</kbd>
+[4,2,7,3,6,8,5,1]
+[5,2,4,7,3,8,6,1]
+[3,5,2,8,6,4,7,1]
+...
+work&gt;
+</pre>
+
+
+<h3 id="doc1_id388">Loading Predicates from Jar files</h3>
+
+<p class="first">Create a jar file of class files.</p>
+
+<pre id="doc1_id390" class="console">work&gt; <kbd class="kbd">jar cf ../queens.jar *.class</kbd>
+work&gt; <kbd class="kbd">cd ..</kbd>
+&gt; <kbd class="kbd">ls</kbd>
+queens.jar	queens.pl	work
+</pre>
+
+<p>Add that jar file to the class path and execute a goal.</p>
+
+<pre id="doc1_id393" class="console">&gt; <kbd class="kbd">java -cp queens.jar:$PLCAFEDIR/plcafe.jar \</kbd>
+    <kbd class="kbd">jp.ac.kobe_u.cs.prolog.lang.PrologMain main</kbd>
+[4,2,7,3,6,8,5,1]
+[5,2,4,7,3,8,6,1]
+[3,5,2,8,6,4,7,1]
+...
+</pre>
+
+
+<h1 class="chapter" id="doc1_id400">Command Utilities</h1>
+
+<p class="first">In this section, 
+we present basic tools, written in Perl, that are useful to develop
+Prolog Cafe applications. 
+<a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_table:basic_tools" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  3.1[Summary of Basic tools]</a> shows the summary of them.</p>
+
+<div class="table">
+<table id="doc1_doc3_table:basic_tools" class="data" rules="groups">
+<caption>Summary of Basic tools</caption>
+<colgroup span="2">
+<col>
+<col>
+</colgroup>
+<thead>
+<tr class="even">
+<th align="center">Command</th>
+<th align="center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:plcafe" onmouseover="hilightSelflink(this)" onmouseout="normal(this)"><tt>plcafe</tt></a></td>
+<td>Prolog Cafe application launcher</td>
+</tr>
+<tr class="odd">
+<td><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:pljava" onmouseover="hilightSelflink(this)" onmouseout="normal(this)"><tt>pljava</tt></a></td>
+<td>Prolog to Java translator</td>
+</tr>
+<tr class="even">
+<td><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:pljavac" onmouseover="hilightSelflink(this)" onmouseout="normal(this)"><tt>pljavac</tt></a></td>
+<td>Compile Prolog Cafe applications into Java bytecode</td>
+</tr>
+<tr class="odd">
+<td><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:plcomp" onmouseover="hilightSelflink(this)" onmouseout="normal(this)"><tt>plcomp</tt></a></td>
+<td>Prolog to Java bytecode compiler</td>
+</tr>
+<tr class="even">
+<td><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:pljar" onmouseover="hilightSelflink(this)" onmouseout="normal(this)"><tt>pljar</tt></a></td>
+<td>Create a Java archive (JAR) file of Prolog</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>We use a list concatenation program in <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_program:append/3" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  3.1[append.pl]</a> as an example through this section.</p>
+
+<div id="doc1_doc3_program:append/3" class="caption">append.pl</div>
+<pre class="program" style="margin-top:0">append([], Zs, Zs).
+append([X|Xs], Ys, [X|Zs]) :- append(Xs, Ys, Zs).
+</pre>
+
+
+<h2 id="doc1_id490">Preliminary</h2>
+
+<p class="first">Check if Perl 5 or higher is installed.</p>
+
+<pre id="doc1_id492" class="console">&gt; <kbd class="kbd">perl -version</kbd>
+This is perl, v5.8.6 built for darwin-thread-multi-2level
+(with 4 registered patches, see perl -V for more detail)
+Copyright 1987-2004, Larry Wall
+...
+</pre>
+
+<p>Set the environment variable <tt>PATH</tt>.</p>
+
+<div id="doc1_id500" class="caption">bash</div>
+<pre class="console" style="margin-top:0">&gt; <kbd class="kbd">export PATH=$PLCAFEDIR/bin:$PATH</kbd>
+&gt; <kbd class="kbd">echo $PATH</kbd>
+/home/banbara/PrologCafeX.Y.Z/bin:....
+</pre>
+
+<p>Check if the setup succeeds or not by launching a small Prolog interpreter.</p>
+
+<pre id="doc1_id505" class="console">&gt; <kbd class="kbd">plcafe</kbd>
+...
+| ?- halt.
+bye
+</pre>
+
+
+<h2 id="doc1_doc3_section:plcafe">plcafe - Prolog Cafe application launcher</h2>
+
+
+<h3 id="doc1_id514">Usage</h3>
+
+
+<pre><b>plcafe [options] [class] [argument...]</b>
+</pre>
+
+
+<dl>
+<dt><tt>options</tt>
+</dt><dd>Command line options
+</dd><dt><tt>class</tt>
+</dt><dd>Class name to be invoked
+</dd><dt><tt>argument</tt>
+</dt><dd>Argument that is passed to the main function</dd></dl>
+
+
+<h3 id="doc1_id547">Description</h3>
+
+<p class="first">The <tt>plcafe</tt> command launches a Prolog Cafe application. If no argument is given, it launches a small interpreter.</p>
+
+<pre id="doc1_id552" class="console">&gt; <kbd class="kbd">plcafe</kbd>
+...
+| ?- 
+</pre>
+
+
+<h3 id="doc1_id556">Options</h3>
+
+
+<dl>
+<dt><tt>-h</tt>
+</dt><dt><tt>-help</tt>
+</dt><dd>Print help message
+</dd><dt><tt>-v</tt>
+</dt><dt><tt>-verbose</tt>
+</dt><dd>Enable verbose output
+</dd><dt><tt>-cp</tt> <em>classpath</em>
+</dt><dt><tt>-classpath</tt> <em>classpath</em>
+</dt><dd>Set a list of directories, Jar archives, and Zip archives to search for class files. Class path entries (<em>classpath</em>) must be separated by colons (:).
+</dd><dd><pre id="doc1_id604" class="console">&gt; <kbd class="kbd">plcafe -cp $PLCAFEDIR/examples/prolog/maketen.jar</kbd>
+...
+| ?- ex.
+[1,1,5,8]  10=8/(1-1/5)
+[1,1,9,9]  10=9*(1+1/9)
+...
+yes
+| ?- 
+</pre>
+</dd><dt><tt>-rt</tt>
+</dt><dt><tt>-runtime</tt>
+</dt><dd>Boot the runtime system only, not including the compiler system.
+</dd><dt><tt>-t</tt> <em>predicate_indicator</em>
+</dt><dt><tt>-toplevel</tt> <em>predicate_indicator</em>
+</dt><dd>Set a top-level goal to the main function of runtime system. The entry <em>predicate_indicator</em> is a goal name, or package and goal name separated by a colon (:). If this option is given, the arguments <tt>class</tt> and <tt>argument</tt> of <tt>plcafe</tt> command must be empty.
+</dd><dd><pre id="doc1_id650" class="console">&gt; <kbd class="kbd">plcafe -t ex -cp $PLCAFEDIR/examples/prolog/maketen.jar</kbd>
+...
+[1,1,5,8]  10=8/(1-1/5)
+[1,1,9,9]  10=9*(1+1/9)
+...
+&gt;
+</pre>
+</dd><dt><tt>-J</tt> <em>options</em>
+</dt><dd>Pass options to the <tt>java</tt> command. The entry <em>options</em> is an option list must be enclosed by single-quote (') .
+<pre id="doc1_id669" class="console">&gt; <kbd class="kbd">plcafe -J '-Xmx100m -verbose:gc' -t ex -cp \</kbd>
+    <kbd class="kbd">$PLCAFEDIR/examples/prolog/maketen.jar</kbd>
+[GC 512K-&gt;215K(1984K), 0.0025620 secs]
+[GC 724K-&gt;437K(1984K), 0.0015267 secs]
+[GC 949K-&gt;469K(1984K), 0.0013030 secs]
+...
+[1,1,5,8]  10=8/(1-1/5)
+...
+[GC 1106K-&gt;599K(1984K), 0.0003398 secs]
+[GC 1111K-&gt;594K(1984K), 0.0002695 secs]
+[GC 1106K-&gt;594K(1984K), 0.0001862 secs]
+...
+[9,9,9,9]  10=(9+9*9)/9
+&gt;
+</pre></dd></dl>
+
+
+<h2 id="doc1_doc3_section:pljava">pljava - Prolog to Java translator</h2>
+
+
+<h3 id="doc1_id679">Usage</h3>
+
+
+<pre><b>pljava [options] [prolog_files]</b>
+</pre>
+
+
+<dl>
+<dt><tt>options</tt>
+</dt><dd>Command line options
+</dd><dt><tt>prolog_files</tt>
+</dt><dd>One or more prolog files to be translated</dd></dl>
+
+
+<h3 id="doc1_id705">Description</h3>
+
+<p class="first">The <tt>pljava</tt> command translates Prolog files into Java files.
+  Each predicate <em>f/n</em>, a java file named 
+  <tt>PRED_</tt><em>f</em><tt>_</tt><em>n</em><tt>.java</tt>
+  will be created in the current directory.</p>
+<p>For example, the following session translates the program of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_program:append/3" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  3.1[append.pl]</a> into Java.</p>
+
+<pre id="doc1_id729" class="console">&gt; <kbd class="kbd">ls</kbd>
+append.pl
+&gt; <kbd class="kbd">pljava append.pl</kbd>
+&gt; <kbd class="kbd">ls</kbd>
+PRED_append_3.java      append.pl
+&gt;   
+</pre>
+
+
+<h3 id="doc1_id733">Options</h3>
+
+
+<dl>
+<dt><tt>-h</tt>
+</dt><dt><tt>-help</tt>
+</dt><dd>Print help message
+</dd><dt><tt>-v</tt>
+</dt><dt><tt>-verbose</tt>
+</dt><dd>Enable verbose output
+</dd><dt><tt>-S</tt>
+</dt><dd>Output WAM-like abstract machine code. For each of input prolog files, a file suffixed by "<tt>.am</tt>" will be created.
+</dd><dd><pre id="doc1_id771" class="console">&gt; <kbd class="kbd">ls</kbd>
+append.pl
+&gt; <kbd class="kbd">pljava -S append.pl</kbd>
+&gt; <kbd class="kbd">ls</kbd>
+PRED_append_3.java      append.am               append.pl
+&gt; 
+</pre>
+</dd><dt><tt>-d</tt> <em>directory</em>
+</dt><dd>Set the destination directory for java files. The directory must already exist. The <tt>pljava</tt> does not create it.
+</dd><dd><pre id="doc1_id790" class="console">&gt; <kbd class="kbd">mkdir work</kbd>
+&gt; <kbd class="kbd">ls</kbd>
+append.pl       work
+&gt; <kbd class="kbd">pljava -d work append.pl</kbd>
+&gt; <kbd class="kbd">ls -R</kbd>
+append.pl       work
+
+./work:
+PRED_append_3.java
+&gt; 
+</pre>
+</dd><dt><tt>-J</tt> <em>options</em>
+</dt><dd>Pass options to the <tt>java</tt> command. The entry <em>options</em> is an option list must be enclosed by single-quote (') . For example, <tt>-J '-Xmx100m -verbose:gc'</tt>.</dd></dl>
+
+
+<h2 id="doc1_doc3_section:pljavac">pljavac - Compile Prolog Cafe applications into Java bytecode</h2>
+
+
+<h3 id="doc1_id819">Usage</h3>
+
+
+<pre><b>pljavac [options] [source_files]</b>
+</pre>
+
+
+<dl>
+<dt><tt>options</tt>
+</dt><dd>Command line options
+</dd><dt><tt>source_files</tt>
+</dt><dd>One or more source files to be compiled</dd></dl>
+
+
+<h3 id="doc1_id845">Description</h3>
+
+<p class="first">The <tt>pljavac</tt> command compiles Java programs
+    including Prolog Cafe API into Java bytecode class files.</p>
+<p>For example, the following session compiles the program of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_program:append/3" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  3.1[append.pl]</a> into Java bytecode class files</p>
+
+<pre id="doc1_id855" class="console">&gt; <kbd class="kbd">ls</kbd>
+append.pl
+&gt; <kbd class="kbd">pljava append.pl</kbd>
+&gt; <kbd class="kbd">pljavac *.java</kbd>
+&gt; <kbd class="kbd">ls</kbd>
+PRED_append_3.class             PRED_append_3_top.class
+PRED_append_3.java              PRED_append_3_var.class
+PRED_append_3_1.class           PRED_append_3_var_1.class
+PRED_append_3_2.class           append.pl
+&gt; <kbd class="kbd">plcafe -cp .</kbd>
+...
+| ?- append([prolog], [java], X).
+X = [prolog,java] ? 
+yes
+| ?- 
+</pre>
+
+
+<h3 id="doc1_id859">Options</h3>
+
+
+<dl>
+<dt><tt>-h</tt>
+</dt><dt><tt>-help</tt>
+</dt><dd>Print help message
+</dd><dt><tt>-v</tt>
+</dt><dt><tt>-verbose</tt>
+</dt><dd>Enable verbose output
+</dd><dt><tt>-cp</tt> <em>classpath</em>
+</dt><dt><tt>-classpath</tt> <em>classpath</em>
+</dt><dd>Set a list of directories, Jar archives, and Zip archives to search for class files. Class path entries (<em>classpath</em>) must be separated by colons (:).
+</dd><dt><tt>-C</tt> <em>options</em>
+</dt><dd>Pass options to the <tt>javac</tt> command. The entry <em>options</em> is an option list must be enclosed by single-quote (') . For example, <tt>-C '-deprecation'</tt>.</dd></dl>
+
+
+<h2 id="doc1_doc3_section:plcomp">plcomp - Prolog to Java bytecode compiler</h2>
+
+
+<h3 id="doc1_id930">Usage</h3>
+
+
+<pre><b>plcomp [options] [prolog_files]</b>
+</pre>
+
+
+<dl>
+<dt><tt>options</tt>
+</dt><dd>Command line options
+</dd><dt><tt>prolog_files</tt>
+</dt><dd>One or more prolog files to be compiled</dd></dl>
+
+
+<h3 id="doc1_id956">Description</h3>
+
+<p class="first">The <tt>plcomp</tt> behaves as follows:</p>
+
+<ol>
+<li> translates Prolog files into Java files by invoking the <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:pljava" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">pljava</a> command.
+</li><li> compiles those Java files into Java bytecode class files by invoking the <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:pljavac" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">pljavac</a> command.</li></ol>
+
+<p>For example, the following session compiles the program of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_program:append/3" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  3.1[append.pl]</a> into Java bytecode class files.</p>
+
+<pre id="doc1_id978" class="console">&gt; <kbd class="kbd">ls</kbd>
+append.pl
+&gt; <kbd class="kbd">plcomp append.pl</kbd>
+&gt; <kbd class="kbd">ls</kbd>
+PRED_append_3.class             PRED_append_3_top.class
+PRED_append_3.java              PRED_append_3_var.class
+PRED_append_3_1.class           PRED_append_3_var_1.class
+PRED_append_3_2.class           append.pl
+&gt; <kbd class="kbd">plcafe -cp .</kbd>
+...
+| ?- append([stag], [beetle], X).
+X = [stag,beetle] ? 
+yes
+| ?- 
+</pre>
+
+
+<h3 id="doc1_id982">Options</h3>
+
+
+<dl>
+<dt><tt>-h</tt>
+</dt><dt><tt>-help</tt>
+</dt><dd>Print help message
+</dd><dt><tt>-v</tt>
+</dt><dt><tt>-verbose</tt>
+</dt><dd>Enable verbose output
+</dd><dt><tt>-d</tt> <em>directory</em>
+</dt><dd>Set the destination directory for java files and bytecode class files, and make it if no exist.
+</dd><dd><pre id="doc1_id1020" class="console">&gt; <kbd class="kbd">ls</kbd>
+append.pl
+&gt; <kbd class="kbd">plcomp -d xxx append.pl</kbd>
+&gt; <kbd class="kbd">ls -R</kbd>
+append.pl       xxx
+
+./xxx:
+PRED_append_3.class             PRED_append_3_top.class
+PRED_append_3.java              PRED_append_3_var.class
+PRED_append_3_1.class           PRED_append_3_var_1.class
+PRED_append_3_2.class
+&gt; 
+</pre>
+</dd><dt><tt>-J</tt> <em>options</em>
+</dt><dd>Pass options to the <tt>java</tt> command. The entry <em>options</em> is an option list must be enclosed by single-quote (') . For example, <tt>-J '-Xmx100m -verbose:gc'</tt>.
+</dd><dt><tt>-cp</tt> <em>classpath</em>
+</dt><dt><tt>-classpath</tt> <em>classpath</em>
+</dt><dd>Set a list of directories, Jar archives, and Zip archives to search for class files. Class path entries (<em>classpath</em>) must be separated by colons (:).
+</dd><dt><tt>-C</tt> <em>options</em>
+</dt><dd>Pass options to the <tt>javac</tt> command. The entry <em>options</em> is an option list must be enclosed by single-quote (').
+</dd><dd><pre id="doc1_id1081" class="console">&gt; <kbd class="kbd">ls</kbd>
+append.pl
+&gt; <kbd class="kbd">mkdir zzz</kbd>
+&gt; <kbd class="kbd">plcomp -d xxx -C '-d zzz' append.pl</kbd>
+&gt; <kbd class="kbd">ls -R</kbd>
+append.pl       xxx             zzz
+
+./xxx:
+PRED_append_3.java
+
+./zzz:
+PRED_append_3.class             PRED_append_3_top.class
+PRED_append_3_1.class           PRED_append_3_var.class
+PRED_append_3_2.class           PRED_append_3_var_1.class
+&gt;
+</pre></dd></dl>
+
+
+<h2 id="doc1_doc3_section:pljar">pljar - Create a Java archive (JAR) file of Prolog</h2>
+
+
+<h3 id="doc1_id1091">Usage</h3>
+
+
+<pre><b>pljar [options] [jar_file] [prolog_files]</b>
+</pre>
+
+
+<dl>
+<dt><tt>options</tt>
+</dt><dd>Command line options
+</dd><dt><tt>jar_file</tt>
+</dt><dd>Jar file to be created
+</dd><dt><tt>prolog_files</tt>
+</dt><dd>One or more prolog files to be compiled</dd></dl>
+
+
+<h3 id="doc1_id1124">Description</h3>
+
+<p class="first">The <tt>pljar</tt> command first translates Prolog files into Java
+  files, then compiles those Java files into bytecode class files, and
+  finally creates a JAR archive file of the class files.</p>
+<p>The execution of '<tt>pljar xxx.jar file.pl</tt>' behaves as follows:</p>
+
+<ol>
+<li> Makes two directories.
+<pre>mkdir xxx xxx/classes</pre>
+</li><li> Compiles <tt>file.pl</tt> into Java bytecode class files by invoking the <tt><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_section:plcomp" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">plcomp</a></tt> command.
+<pre>plcomp -C '-d xxx/classes' -d xxx file.pl</pre>
+</li><li> Creates a JAR file <tt>xxx.jar</tt> by invoking the <tt>jar</tt> command.
+<pre>jar cf xxx.jar -C xxx/classes .</pre></li></ol>
+
+<p>For example, the following session creates a JAR file for the program of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc3_program:append/3" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">List  3.1[append.pl]</a>.</p>
+
+<pre id="doc1_id1171" class="console">&gt; <kbd class="kbd">ls</kbd>
+append.pl
+&gt; <kbd class="kbd">pljar append.jar append.pl</kbd>
+&gt; <kbd class="kbd">ls -R</kbd>
+append          append.jar      append.pl
+
+./append:
+PRED_append_3.java      classes
+
+./append/classes:
+PRED_append_3.class             PRED_append_3_top.class
+PRED_append_3_1.class           PRED_append_3_var.class
+PRED_append_3_2.class           PRED_append_3_var_1.class
+&gt; <kbd class="kbd">plcafe -cp append.jar</kbd>
+...
+| ?- append([prolog], [cafe], X).
+X = [prolog,cafe] ? 
+yes
+| ?- 
+</pre>
+
+
+<h3 id="doc1_id1175">Options</h3>
+
+
+<dl>
+<dt><tt>-h</tt>
+</dt><dt><tt>-help</tt>
+</dt><dd>Print help message
+</dd><dt><tt>-v</tt>
+</dt><dt><tt>-verbose</tt>
+</dt><dd>Enable verbose output
+</dd><dt><tt>-J</tt> <em>options</em>
+</dt><dd>Pass options to the <tt>java</tt> command. The entry <em>options</em> is an option list must be enclosed by single-quote (') . For example, <tt>-J '-Xmx100m -verbose:gc'</tt>.
+</dd><dt><tt>-cp</tt> <em>classpath</em>
+</dt><dt><tt>-classpath</tt> <em>classpath</em>
+</dt><dd>Set a list of directories, Jar archives, and Zip archives to search for class files. Class path entries (<em>classpath</em>) must be separated by colons (:).
+</dd><dt><tt>-C</tt> <em>options</em>
+</dt><dd>Pass options to the <tt>javac</tt> command. The entry <em>options</em> is an option list must be enclosed by single-quote (').</dd></dl>
+
+
+<h1 class="chapter" id="doc1_id1261">Built-in Predicates</h1>
+
+<p class="first">We shall present the usage of builtin predicates with using <em>mode</em>. The mode of each argument indicates whether an argument shall be instantiated or not when the builtin predicate is executed. The mode is one of the following atoms.</p>
+
+<div class="table">
+<table id="doc1_id1271" class="data" rules="groups">
+<colgroup span="2">
+<col>
+<col>
+</colgroup>
+<thead>
+<tr class="even">
+<th colspan="2" align="center">Mode specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td><tt>+</tt></td>
+<td>The argument shall be instantiated.</td>
+</tr>
+<tr class="odd">
+<td><tt>?</tt></td>
+<td>The argument shall be instantiated or a variable.</td>
+</tr>
+<tr class="even">
+<td><tt>@</tt></td>
+<td>The argument shall remain unaltered.</td>
+</tr>
+<tr class="odd">
+<td><tt>-</tt></td>
+<td>The argument shall be a variable that will be instantiated</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>if and only if the goal succeeds.</td>
+</tr>
+<tr class="odd">
+<td><tt>:</tt></td>
+<td>The argument shall be instantiated to a term denoting a goal or a clause</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>that may or may not be prefixed by the package name.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<h2 id="doc1_id1353">Control constructs</h2>
+
+
+<dl>
+<dt><tt>true</tt>
+</dt><dt><tt>otherwise</tt>
+</dt><dt><tt>fail</tt>
+</dt><dt><tt>false</tt>
+</dt><dt><tt>!</tt>
+</dt><dt><tt>?Term ^ :Callable_term</tt>
+</dt><dt><tt>Goal1 , Goal2</tt>
+</dt><dt><tt>Goal1 ; Goal2</tt>
+</dt><dt><tt>Goal1 -&gt; Goal2</tt>
+</dt><dt><tt>call(:Callable_term)</tt>
+</dt><dt><tt>catch(:Callable_term, ?Term1, :Term2)</tt>
+</dt><dt><tt>throw(+Nonvar)</tt>
+</dt><dt><tt>on_exception(?Term1, :Callable_term, :Term2)</tt>
+</dt><dt><tt>raise_exception(+Nonvar)</tt></dt></dl>
+
+
+<h2 id="doc1_id1416">Term unification</h2>
+
+
+<dl>
+<dt><tt>?Term1 = ?Term2</tt>
+</dt><dt><tt>unify_with_occurs_check/2</tt>
+</dt><dd>Is not available yet.
+</dd><dt><tt>?Term1 \= ?Term2</tt></dt></dl>
+
+
+<h2 id="doc1_id1438">Type testing</h2>
+
+
+<dl>
+<dt><tt>var(@Term)</tt>
+</dt><dt><tt>atom(@Term)</tt>
+</dt><dt><tt>integer(@Term)</tt>
+</dt><dt><tt>float(@Term)</tt>
+</dt><dt><tt>atomic(@Term)</tt>
+</dt><dt><tt>compound(@Term)</tt>
+</dt><dt><tt>nonvar(@Term)</tt>
+</dt><dt><tt>number(@Term)</tt>
+</dt><dt><tt>java(@Term)</tt>
+</dt><dd>Checks that <tt>Term</tt> is currently instantiated to a java term.
+<pre id="doc1_id1483" class="console">| ?- <kbd class="kbd">java_constructor('java.lang.String'(hoge), X), java(X).</kbd>
+X = java.lang.String(3208229) ? 
+yes
+</pre>
+</dd><dt><tt>java(@Term1, ?Term2)</tt>
+</dt><dd>Checks that <tt>Term1</tt> is currently instantiated to a java term. The result of the call is to unify <tt>Term2</tt> with the full class name of underlying object of <tt>Term1</tt>.
+<pre id="doc1_id1502" class="console">| ?- <kbd class="kbd">current_input(X), java(X,Y).</kbd>
+X = java.io.PushbackReader(16632172),
+Y = 'java.io.PushbackReader' ? 
+yes
+</pre>
+</dd><dt><tt>ground(@Term)</tt>
+</dt><dt><tt>callable(@Term)</tt></dt></dl>
+
+
+<h2 id="doc1_id1518">Term comparison</h2>
+
+
+<dl>
+<dt><tt>@Term1 == @Term2</tt>
+</dt><dt><tt>@Term1 \== @Term2</tt>
+</dt><dt><tt>@Term1 @&lt; @Term2</tt>
+</dt><dt><tt>@Term1 @&gt; @Term2</tt>
+</dt><dt><tt>@Term1 @=&lt; @Term2</tt>
+</dt><dt><tt>@Term1 @&gt;= @Term2</tt>
+</dt><dt><tt>?=(@Term1, @Term2)</tt>
+</dt><dt><tt>compare(?Op_term, @Term1, @Term2)</tt>
+</dt><dt><tt>sort(+List1, ?List2)</tt>
+</dt><dt><tt>keysort(+List1, ?List2)</tt></dt></dl>
+
+
+<h2 id="doc1_id1565">Term creation and decomposition</h2>
+
+
+<dl>
+<dt><tt>functor(-Nonvar, +Atomic, +Integer)</tt>
+</dt><dt><tt>functor(+Nonvar, ?Atomic, ?Integer)</tt>
+</dt><dt><tt>arg(+Integer, +Compound_term, ?Term)</tt>
+</dt><dt><tt>+Nonvar =.. ?List</tt>
+</dt><dt><tt>-Nonvar =.. +List</tt>
+</dt><dt><tt>copy_term(?Term1, ?Term2)</tt></dt></dl>
+
+
+<h2 id="doc1_id1596">Arithmetic evaluation</h2>
+
+
+<dl>
+<dt><tt>?Term is @Evaluable</tt></dt></dl>
+
+
+<h2 id="doc1_id1607">Arithmetic comparison</h2>
+
+
+<dl>
+<dt><tt>@Evaluable1 =:=   @Evaluable2</tt>
+</dt><dt><tt>@Evaluable1 =\=   @Evaluable2</tt>
+</dt><dt><tt>@Evaluable1 &lt;  @Evaluable2</tt>
+</dt><dt><tt>@Evaluable1 =&lt; @Evaluable2</tt>
+</dt><dt><tt>@Evaluable1 &gt;  @Evaluable2</tt>
+</dt><dt><tt>@Evaluable1 &gt;= @Evaluable2</tt></dt></dl>
+
+
+<h2 id="doc1_id1638">Clause retrieval and information</h2>
+
+
+<dl>
+<dt><tt>clause(:Head, ?Callable_term)</tt>
+</dt><dt><tt>current_predicate(?Predicate_indicator)</tt>
+</dt><dd>Is not available yet.</dd></dl>
+
+
+<h2 id="doc1_id1657">Clause creation and destruction</h2>
+
+
+<dl>
+<dt><tt>assert(:Clause)</tt>
+</dt><dt><tt>assertz(:Clause)</tt>
+</dt><dt><tt>asserta(:Clause)</tt>
+</dt><dt><tt>retract(:Clause)</tt>
+</dt><dt><tt>abolish(:Predicate_indicator)</tt>
+</dt><dt><tt>retractall(:Head)</tt></dt></dl>
+
+
+<h2 id="doc1_id1688">All solutions</h2>
+
+
+<dl>
+<dt><tt>findall(?Term, :Callable_term, ?List)</tt>
+</dt><dt><tt>bagof(?Term, :Callable_term, ?List)</tt>
+</dt><dt><tt>setof(?Term, :Callable_term, ?List)</tt></dt></dl>
+
+
+<h2 id="doc1_id1707">Stream selection and control</h2>
+
+
+<dl>
+<dt><tt>current_input(?Stream)</tt>
+</dt><dt><tt>current_output(?Stream)</tt>
+</dt><dt><tt>set_input(@Stream_or_alias)</tt>
+</dt><dt><tt>set_output(@Stream_or_alias)</tt>
+</dt><dt><tt>open(@Source_sink, @IO_mode, -Stream)</tt>
+</dt><dt><tt>open(@Source_sink, @IO_mode, -Stream, @Stream_options)</tt>
+</dt><dd>The stream-options <tt>type(T)</tt>, <tt>reposition(Bool)</tt>, and <tt>eof_action(Action)</tt> are not available yet.
+</dd><dt><tt>close(@Stream_or_alias)</tt>
+</dt><dt><tt>close(@Stream_or_alias, @Close_options)</tt>
+</dt><dd>The close-options are not available yet.
+</dd><dt><tt>flush_output(@Stream_or_alias)</tt>
+</dt><dt><tt>flush_output</tt>
+</dt><dt><tt>stream_property(?Stream, ?Stream_property)</tt>
+</dt><dt><tt>at_end_of_stream/0</tt>
+</dt><dd>Is not available yet.
+</dd><dt><tt>at_end_of_stream/1</tt>
+</dt><dd>Is not available yet.
+</dd><dt><tt>set_stream_position/2</tt>
+</dt><dd>Is not available yet.</dd></dl>
+
+
+<h2 id="doc1_id1794">Character input/output</h2>
+
+
+<dl>
+<dt><tt>get_char(?In_character)</tt>
+</dt><dt><tt>get_char(@Stream_or_alias, ?In_character)</tt>
+</dt><dt><tt>get_code(?In_character_code)</tt>
+</dt><dt><tt>get_code(@Stream_or_alias, ?In_character_code)</tt>
+</dt><dt><tt>peek_char(?In_character)</tt>
+</dt><dt><tt>peek_char(@Stream_or_alias, ?In_character)</tt>
+</dt><dt><tt>peek_code(?In_character_code)</tt>
+</dt><dt><tt>peek_code(@Stream_or_alias, ?In_character_code)</tt>
+</dt><dt><tt>put_char(+Character)</tt>
+</dt><dt><tt>put_char(@Stream_or_alias, +Character)</tt>
+</dt><dt><tt>put_code(+Character_code)</tt>
+</dt><dt><tt>put_code(@Stream_or_alias, +Character_code)</tt>
+</dt><dt><tt>nl</tt>
+</dt><dt><tt>nl(@Stream_or_alias)</tt>
+</dt><dt><tt>get0(?In_character_code)</tt>
+</dt><dt><tt>get0(@Stream_or_alias, ?In_character_code)</tt>
+</dt><dt><tt>get(?In_character_code)</tt>
+</dt><dt><tt>get(@Stream_or_alias, ?In_character_code)</tt>
+</dt><dt><tt>put(+Character_code)</tt>
+</dt><dt><tt>put(@Stream_or_alias, +Character_code)</tt>
+</dt><dt><tt>tab(+Evaluable)</tt>
+</dt><dt><tt>tab(@Stream_or_alias, +Evaluable)</tt>
+</dt><dt><tt>skip(+Evaluable)</tt>
+</dt><dt><tt>skip(@Stream_or_alias, +Evaluable)</tt></dt></dl>
+
+
+<h2 id="doc1_id1897">Byte input/output</h2>
+
+
+<dl>
+<dt><tt>get_byte/2</tt>
+</dt><dt><tt>get_byte/1</tt>
+</dt><dt><tt>peek_byte/2</tt>
+</dt><dt><tt>peek_byte/1</tt>
+</dt><dt><tt>put_byte/2</tt>
+</dt><dt><tt>put_byte/1</tt></dt></dl>
+
+
+<h2 id="doc1_id1928">Term input/output</h2>
+
+
+<dl>
+<dt><tt>read_term/3</tt>
+</dt><dd>Is not available yet.
+</dd><dt><tt>read_term/2</tt>
+</dt><dd>Is not available yet.
+</dd><dt><tt>read(?Term)</tt>
+</dt><dt><tt>read(@Stream_or_alias, ?Term)</tt>
+</dt><dt><tt>read_with_variables(?Term, ?List)</tt>
+</dt><dt><tt>read_with_variables(@Stream_or_alias, ?Term, ?List)</tt>
+</dt><dt><tt>read_line(?Character_code_list)</tt>
+</dt><dt><tt>read_line(@Stream_or_alias, ?Character_code_list)</tt>
+</dt><dt><tt>write(@Term)</tt>
+</dt><dt><tt>write(@Stream_or_alias, @Term)</tt>
+</dt><dt><tt>writeq(@Term)</tt>
+</dt><dt><tt>writeq(@Stream_or_alias, @Term)</tt>
+</dt><dt><tt>write_canonical(@Term)</tt>
+</dt><dt><tt>write_canonical(@Stream_or_alias, @Term)</tt>
+</dt><dt><tt>write_term(@Term, @Write_options_list)</tt>
+</dt><dt><tt>write_term(@Stream_or_alias, @Term, @Write_options_list)</tt>
+</dt><dt><tt>op(+Integer, +Op_specifier, @Atom_or_atom_list)</tt>
+</dt><dt><tt>current_op(?Integer, ?Op_specifier, ?Atom)</tt>
+</dt><dt><tt>char_conversion/2</tt>
+</dt><dd>Is not available yet.
+</dd><dt><tt>current_char_conversion/2</tt>
+</dt><dd>Is not available yet.</dd></dl>
+
+
+<h2 id="doc1_id2027">Logic and control</h2>
+
+
+<dl>
+<dt><tt>\+(:Callable_term)</tt>
+</dt><dt><tt>once(:Callable_term)</tt>
+</dt><dt><tt>repeat</tt></dt></dl>
+
+
+<h2 id="doc1_id2046">Atomic term processing</h2>
+
+
+<dl>
+<dt><tt>atom_length(+Atom, ?Integer)</tt>
+</dt><dt><tt>atom_concat(?Atom, ?Atom, +Atom)</tt>
+</dt><dt><tt>atom_concat(+Atom, +Atom, -Atom)</tt>
+</dt><dt><tt>sub_atom(+Atom, ?Integer, ?Integer, ?Integer, ?Atom)</tt>
+</dt><dt><tt>atom_chars(+Atom, ?Character_list)</tt>
+</dt><dt><tt>atom_chars(-Atom, +Character_list)</tt>
+</dt><dt><tt>atom_codes(+Atom, ?Character_code_list)</tt>
+</dt><dt><tt>atom_codes(-Atom, +Character_code_list)</tt>
+</dt><dt><tt>char_code(+Character, ?Character_code)</tt>
+</dt><dt><tt>char_code(-Character, +Character_code)</tt>
+</dt><dt><tt>number_chars(+Number, ?Character_list)</tt>
+</dt><dt><tt>number_chars(-Number, +Character_list)</tt>
+</dt><dt><tt>number_codes(+Number, ?Character_code_list)</tt>
+</dt><dt><tt>number_codes(-Number, +Character_code_list)</tt>
+</dt><dt><tt>name(+Atom_or_number, ?Character_code_list)</tt>
+</dt><dt><tt>name(-Atom_or_number, +Character_code_list)</tt></dt></dl>
+
+
+<h2 id="doc1_id2117">Implementation defined hooks</h2>
+
+
+<dl>
+<dt><tt>set_prolog_flag(+Flag, @Nonvar)</tt>
+</dt><dd>Some of flags are not available yet.
+</dd><dt><tt>current_prolog_flag(?Flag, ?Term)</tt>
+</dt><dd>Some of flags are not available yet.
+</dd><dt><tt>halt</tt>
+</dt><dt><tt>halt(+Integer)</tt>
+</dt><dt><tt>abort</tt></dt></dl>
+
+
+<h2 id="doc1_id2150">DCG</h2>
+
+
+<dl>
+<dt><tt>'C'(?S1, ?Terminal, ?S2)</tt>
+</dt><dt><tt>expand_term(@Term1, ?Term2)</tt></dt></dl>
+
+
+<h2 id="doc1_id2167">Interoperating with Java</h2>
+
+
+<dl>
+<dt><tt>java_constructor(+Class(Arg<sub>1</sub>,...,Arg<sub>n</sub>), ?Term)</tt>
+</dt><dd>Creates a new instance by calling the public constructor represented by <tt>Class(Arg<sub>1</sub>,...,Arg<sub>n</sub>)</tt>, and unifies the instance with <tt>Term</tt>. <tt>Class</tt> is a Java class name with full package path. <tt>Arg</tt> is an argument to be passed to the constructor call. Each of arguments is automatically converted to a corresponding Java object (See <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  4.1[Data conversion between Prolog and Java]</a>). Place just an atom as <tt>Class</tt> instead if the constructor has no argument (<tt>n = 0</tt>).
+<pre id="doc1_id2211" class="console">| ?- <kbd class="kbd">java_constructor('java.awt.Frame', X).</kbd>
+X = java.awt.Frame(4160722) ? 
+yes
+| ?- <kbd class="kbd">java_constructor('java.lang.Integer'(100), X).</kbd>
+X = java.lang.Integer(100) ? 
+yes
+</pre>
+</dd><dt><tt>java_constructor0(+Class(Arg<sub>1</sub>,...,Arg<sub>n</sub>), -Term)</tt>
+</dt><dd>Behaves the same as <tt>java_constructor/2</tt> except that each of arguments (<tt>Arg<sub>i</sub></tt>) is NOT automatically converted.
+</dd><dt><tt>java_declared_constructor(+Class(Arg<sub>1</sub>,...,Arg<sub>n</sub>), ?Term)</tt>
+</dt><dd>Behaves the same as <tt>java_constructor/2</tt> except that this creates a new instance by calling the public, protected, default (package) access, or private constructor.
+</dd><dt><tt>java_declared_constructor0(+Class(Arg<sub>1</sub>,...,Arg<sub>n</sub>), -Term)</tt>
+</dt><dd>Behaves the same as <tt>java_declared_constructor/2</tt> except that each of arguments (<tt>Arg<sub>i</sub></tt>) is NOT automatically converted.
+</dd><dt><tt>java_method(+Class_or_Instance, 
+                      +Method(Arg<sub>1</sub>,...,Arg<sub>n</sub>), 
+                      ?Term)</tt>
+</dt><dd><p>Invokes the public <em>member</em> method <span class="note"><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2296" onmouseover="hilightSelflink(this)" onmouseout="normal(this)" title="The public member methods of the class or interface includes those declared by the class or interface and those inherited from superclasses and superinterfaces."><sup>(1)</sup></a></span> represented by <tt>Method(Arg<sub>1</sub>,...,Arg<sub>n</sub>)</tt> of the class, interface, or instance represented by <tt>Class_or_Instance</tt>, and unifies a return object with <tt>Term</tt>. <tt>Method</tt> is a Java method name. <tt>Arg</tt> is an argument to be passed to the method call. Each of arguments is automatically converted to a corresponding Java object (See <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  4.1[Data conversion between Prolog and Java]</a>). Place just an atom as <tt>Method</tt> instead if the method has no argument (<tt>n = 0</tt>). <tt>Method</tt> is a instance method if <tt>Class_or_Instance</tt> is a Java object. <tt>Method</tt> is a static method if <tt>Class_or_Instance</tt> is an atom representing a Java class name with full package path. The return object is automatically converted to a corresponding term by the inverse conversion of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  4.1[Data conversion between Prolog and Java]</a>. If the return type of <tt>Method</tt> is void, or the return object is <tt>null</tt>, <tt>Term</tt> remains unaltered.</p>
+
+<pre id="doc1_id2351" class="console">| ?- <kbd class="kbd">java_method('java.lang.Math', abs(-1), X).</kbd>
+X = 1 ? 
+yes
+</pre>
+
+<p>The following will display an empty frame on your desktop.</p>
+
+<pre id="doc1_id2354" class="console">| ?- java_constructor('java.awt.Frame', X), 
+     java_method(X, setSize(300,300), _), 
+     java_method(X, show, _).
+
+X = java.awt.Frame(14538812) ? 
+yes
+</pre>
+</dd><dt><tt>java_method0(+Class_or_Instance, 
+                      +Method(Arg<sub>1</sub>,...,Arg<sub>n</sub>), 
+                      -Term)</tt>
+</dt><dd>Behaves the same as <tt>java_method/3</tt> except that each of arguments (<tt>Arg<sub>i</sub></tt>) and the return object are NOT automatically converted.
+</dd><dt><tt>java_declared_method(+Class_or_Instance, 
+                      +Method(Arg<sub>1</sub>,...,Arg<sub>n</sub>), 
+                      ?Term)</tt>
+</dt><dd>Behaves the same as <tt>java_method/3</tt> except that this invokes the public, protected, default (package) access, or private method, but not the inherited method.
+</dd><dt><tt>java_declared_method0(+Class_or_Instance, 
+                      +Method(Arg<sub>1</sub>,...,Arg<sub>n</sub>), 
+                      -Term)</tt>
+</dt><dd>Behaves the same as <tt>java_declared_method/3</tt> except that each of arguments (<tt>Arg<sub>i</sub></tt>) and the return object are NOT automatically converted.
+</dd><dt><tt>java_get_field(+Class_or_Instance,
+                         +Field,
+                         ?Term)</tt>
+</dt><dd><p>Gets the value of the public <em>member</em> field <span class="note"><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_note:public_member_fields" onmouseover="hilightSelflink(this)" onmouseout="normal(this)" title="The public member fields of the class or interface includes those declared by the class or interface and those inherited from superclasses and superinterfaces."><sup>(2)</sup></a></span> represented by <tt>Field</tt> of the class, interface, or instance represented by <tt>Class_or_Instance</tt>, and unifies it with <tt>Term</tt>. <tt>Field</tt> is an atom that represents a Java field name. <tt>Field</tt> is a instance field if <tt>Class_or_Instance</tt> is a Java object. <tt>Field</tt> is a static field if <tt>Class_or_Instance</tt> is an atom representing a Java class name with full package path. The field object is automatically converted to a corresponding term by the inverse conversion of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  4.1[Data conversion between Prolog and Java]</a>.</p>
+<p>The following will display an empty frame on your desktop.</p>
+
+<pre id="doc1_id2462" class="console">| ?- java_constructor('java.awt.Frame', X),
+     java_method(X, setSize(300,300), _),
+     java_get_field('java.lang.Boolean', 'TRUE', T),
+     java_method(X, setVisible(T), _).
+
+X = java.awt.Frame(4422554),
+T = java.lang.Boolean(1231) ?
+yes
+</pre>
+</dd><dt><tt>java_get_field0(+Class_or_Instance,
+                         +Field,
+                         -Term)</tt>
+</dt><dd>Behaves the same as <tt>java_get_field/3</tt> except that the field object is NOT automatically converted.
+</dd><dt><tt>java_get_declared_field(+Class_or_Instance,
+                         +Field,
+                         ?Term)</tt>
+</dt><dd>Behaves the same as <tt>java_get_field/3</tt> except that this gets the value of the public, protected, default (package) access, or private field, but not the inherited field.
+</dd><dt><tt>java_get_declared_field0(+Class_or_Instance,
+                         +Field,
+                         -Term)</tt>
+</dt><dd>Behaves the same as <tt>java_get_declared_field/3</tt> except that the field object is NOT automatically converted.
+</dd><dt><tt>java_set_field(+Class_or_Instance,
+                         +Field,
+                         +Value)</tt>
+</dt><dd>Sets the value to the public <em>member</em> field <span class="note"><a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_id2513" onmouseover="hilightSelflink(this)" onmouseout="normal(this)" title=""><sup>(3)</sup></a></span> represented by <tt>Field</tt> of the class, interface, or instance represented by <tt>Class_or_Instance</tt>. <tt>Field</tt> is an atom that represents a Java field name. <tt>Value</tt>, a value to be set to the field, is automatically converted to a corresponding Java object (See <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  4.1[Data conversion between Prolog and Java]</a>). <tt>Field</tt> is a instance field if <tt>Class_or_Instance</tt> is a Java object. <tt>Field</tt> is a static field if <tt>Class_or_Instance</tt> is an atom representing a Java class name with full package path.
+</dd><dt><tt>java_set_field0(+Class_or_Instance,
+                         +Field,
+                         +Value)</tt>
+</dt><dd>Behaves the same as <tt>java_set_field/3</tt> except that <tt>Value</tt>, a value to be set to the field, is NOT automatically converted.
+</dd><dt><tt>java_set_declared_field(+Class_or_Instance,
+                         +Field,
+                         +Value)</tt>
+</dt><dd>Behaves the same as <tt>java_set_field/3</tt> except that this sets the value to the public, protected, default (package) access, or private field, but not the inherited field.
+</dd><dt><tt>java_set_declared_field0(+Class_or_Instance,
+                         +Field,
+                         +Value)</tt>
+</dt><dd>Behaves the same as <tt>java_set_declared_field/3</tt> except that <tt>Value</tt>, a value to be set to the field, is NOT automatically converted.
+</dd><dt><tt>synchronized(+Java_object, :Goal)</tt>
+</dt><dd>Behaves as <tt>call(:Goal)</tt> except that the underlying object of <tt>Java_object</tt> is locked during the execution of <tt>Goal</tt>.
+</dd><dt><tt>java_conversion(+Term1, -Term2)</tt>
+</dt><dt><tt>java_conversion(-Term1, +Term2)</tt>
+</dt><dd>Converts <tt>Term1</tt> to a corresponding Java object according to <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  4.1[Data conversion between Prolog and Java]</a> and unifies it with <tt>Term2</tt> if <tt>Term2</tt> is uninstantiated. Otherwise, converts the underlying Java object of <tt>Term2</tt> to a corresponding term by the inverse conversion of <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_table:data_conversion" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">Table  4.1[Data conversion between Prolog and Java]</a>.
+<pre id="doc1_id2635" class="console">| ?- java_conversion([1,2,[a,b]], Java), 
+     java_conversion(Prolog, Java).
+Java = java.util.Vector(34880),
+Prolog = [1,2,[a,b]] ? 
+yes
+</pre></dd></dl>
+
+
+<div class="table">
+<table id="doc1_doc4_table:data_conversion" class="data" rules="groups">
+<caption>Data conversion between Prolog and Java</caption>
+<colgroup span="2">
+<col>
+<col>
+</colgroup>
+<thead>
+<tr class="even">
+<th style="width:20%" align="center">Prolog</th>
+<th style="width:20%" align="center">Java</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td>integer</td>
+<td>java.lang.Integer</td>
+</tr>
+<tr class="odd">
+<td>float</td>
+<td>java.lang.Double</td>
+</tr>
+<tr class="even">
+<td>atom</td>
+<td>java.lang.String</td>
+</tr>
+<tr class="odd">
+<td>list</td>
+<td>java.util.Vector</td>
+</tr>
+<tr class="even">
+<td>Java_object</td>
+<td>Java Object</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="footnote">
+<ol>
+<li id="doc1_id2296" value="1"> The public member methods of the class or interface includes those declared by the class or interface and those inherited from superclasses and superinterfaces.</li><li id="doc1_doc4_note:public_member_fields" value="2"> The public member fields of the class or interface includes those declared by the class or interface and those inherited from superclasses and superinterfaces.</li><li id="doc1_id2513" value="3"> <a href="http://kaminari.scitec.kobe-u.ac.jp/prologcafe/manual_en.html#doc1_doc4_note:public_member_fields" onmouseover="hilightSelflink(this)" onmouseout="normal(this)">(2)</a></li></ol>
+</div>
+
+
+<h2 id="doc1_id2705">Prolog interpreter</h2>
+
+
+<dl>
+<dt><tt>consult(@Files)</tt>
+</dt><dt><tt>trace</tt>
+</dt><dt><tt>notrace</tt>
+</dt><dt><tt>debug</tt>
+</dt><dt><tt>nodebug</tt>
+</dt><dt><tt>leash(@Mode)</tt>
+</dt><dt><tt>spy(:Predicate_indicator)</tt>
+</dt><dt><tt>nospy(:Predicate_indicator)</tt>
+</dt><dt><tt>nospyall</tt>
+</dt><dt><tt>listing</tt>
+</dt><dt><tt>listing(:Predicate_indicator)</tt></dt></dl>
+
+
+<h2 id="doc1_id2757">Misc</h2>
+
+
+<dl>
+<dt><tt>length(?List, ?Integer)</tt>
+</dt><dt><tt>numbervars(+Term, +Start, ?End)</tt>
+</dt><dt><tt>statistics(+Key, ?Values)</tt>
+</dt><dd>Unifies system statistics determined by <tt>Key</tt> with <tt>Values</tt>. The possible keys and its values are as follows:
+<div class="table">
+<table id="doc1_id2783" class="data" rules="groups">
+<caption>System statistics</caption>
+<colgroup span="2">
+<col>
+<col>
+</colgroup>
+<thead>
+<tr class="even">
+<th style="width:20%" align="center">key</th>
+<th style="width:60%" align="center">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="even">
+<td><tt>runtime</tt></td>
+<td><tt>[</tt> since start <tt>,</tt> since previous statistics <tt>]</tt></td>
+</tr>
+<tr class="odd">
+<td><tt>trail</tt></td>
+<td><tt>[</tt> used <tt>,</tt> free <tt>]</tt></td>
+</tr>
+<tr class="even">
+<td><tt>choice</tt></td>
+<td><tt>[</tt> used <tt>,</tt> free <tt>]</tt></td>
+</tr>
+</tbody>
+</table>
+</div></dd></dl>
+
+<div class="footer">
+  <hr>
+  <a href="http://kaminari.istc.kobe-u.ac.jp/banbara.html" target="_top" onmouseover="hilightExternallink(this)" onmouseout="normal(this)">Mutsunori BANBARA</a></div>
+
+
+</body></html>
